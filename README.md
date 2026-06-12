@@ -1,33 +1,50 @@
-# Deep E-prop: Testing Online Credit Assignment in Deep Recurrent Networks
+# Deep E-prop: Online Credit Assignment Across Depth
 
-**NeuroAI & ML 4 Neuro — Sommersemester 2026**
+**NeuroAI & ML 4 Neuro - Sommersemester 2026**
 
-Group: Simon Peter, Yannick Säckl, Ruchit Kumar Patel
+Group: Simon Peter, Yannick Saeckl, Ruchit Kumar Patel
 
 ## Project Overview
 
-This project tests whether e-prop's eligibility-trace approximation actually matters when extended to deep networks (Millidge 2025), or whether the simpler d=0 (immediate derivative) baseline suffices.
+This repo tests whether Millidge's deep e-prop recursion can assign credit
+across inserted feedforward hidden layers in a recurrent network. The core
+experiment is the 1-bit store-and-recall task from `PLAN.md`: BPTT should solve
+the task, naive e-prop should fail once a feedforward hidden layer blocks the
+direct recurrent-to-readout path, and deep e-prop should recover the missing
+credit assignment.
 
-## Repository Structure
+## Current Layout
 
 ```
-tasks/           # Benchmark tasks (store-and-recall, evidence accumulation)
+tasks/           # Store-and-recall generator and task metrics
 models/          # RNN model definitions
-learning_rules/  # E-prop, deep e-prop, d=0, BPTT, deep-RTRL
+learning_rules/  # BPTT, e-prop, deep e-prop, deep-RTRL
 experiments/     # Experiment scripts
 results/         # Output figures and metrics
+tests/           # Fast correctness/smoke checks
 ```
+
+M1 uses the existing root-level package layout. New code should use
+`tasks.store_and_recall` and `models.stacked_rnn`. Older files remain available
+for reference but still reflect the previous project framing.
+
+## Colab Workflow
+
+Use GitHub as the source of truth and run repo scripts/tests from a fresh clone:
+
+```python
+!git clone -b <branch> <repo-url>
+%cd e-prop-in-deep-networks
+!pip install -r requirements.txt
+!pytest -q
+```
+
+Use CPU for tiny correctness gates and smoke checks. Use GPU only for longer
+learning curves. Save generated figures/logs under `results/`, then commit only
+the selected artifacts that belong in the report.
 
 ## Key References
 
-- Bellec et al. (2020) — E-prop: Biologically plausible learning in RNNs
-- Millidge (2025) — Deep E-prop
-- Shalev-Merin (2026) — d=0 baseline / RTRL equivalences
-- Zucchet et al. — Instantaneous spatial backprop
-
-## Tasks
-
-1. [x] Single-layer e-prop on store-and-recall (reproduce standard result)
-2. [ ] Deep-RTRL correctness check (match BPTT to numerical precision)
-3. [ ] Deep e-prop vs d=0 vs BPTT at 2 layers — gradient cosine plots
-4. [ ] Depth sweep (1–3 layers), delay-length sweep
+- Bellec et al. (2020) - E-prop: Biologically plausible learning in RNNs
+- Millidge (2025) - Deep E-prop
+- Williams & Zipser (1989) - RTRL
