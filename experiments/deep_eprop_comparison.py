@@ -25,7 +25,7 @@ from models.deep_rnn import DeepRNN
 from learning_rules.deep_rtrl   import compute_deep_rtrl_gradients
 from learning_rules.deep_rtrl   import mse_error
 from learning_rules.deep_eprop  import compute_deep_eprop_gradients
-from learning_rules.bptt        import _mse_loss
+from learning_rules.bptt        import _trace_mse_loss
 
 
 # ── Configuration ─────────────────────────────────────────────────────────────
@@ -47,7 +47,7 @@ def bptt_grads(model: DeepRNN, inputs, targets, mask):
         if p.grad is not None:
             p.grad.zero_()
     outputs, _ = model(inputs)
-    loss = _mse_loss(outputs, targets, mask)
+    loss = _trace_mse_loss(outputs, targets, mask)
     loss.backward()
     return {k: p.grad.clone() for k, p in model.named_parameters() if p.grad is not None}
 

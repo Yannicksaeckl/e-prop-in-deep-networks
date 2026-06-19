@@ -22,7 +22,7 @@ import torch.nn.functional as F
 from tasks.store_and_recall import generate_batch, task_accuracy
 from models.deep_rnn import DeepRNN
 from learning_rules.deep_eprop import compute_deep_eprop_gradients, mse_error
-from learning_rules.bptt import _mse_loss
+from learning_rules.bptt import _trace_mse_loss
 
 
 SEED       = 42
@@ -30,7 +30,7 @@ N_PATTERNS = 4
 N_REC      = 50
 BATCH_SIZE = 32
 DEVICE     = "cpu"
-DEPTHS     = [1, 2, 3, 4, 5]
+DEPTHS     = [1, 2, 3]
 DELAYS     = [2, 5, 10]
 N_TRIALS   = 20   # gradient cosine trials per (depth, delay)
 N_STEPS    = 800  # training steps for learning curves
@@ -47,7 +47,7 @@ def bptt_grads(model, inputs, targets, mask):
         if p.grad is not None:
             p.grad.zero_()
     outputs, _ = model(inputs)
-    _mse_loss(outputs, targets, mask).backward()
+    _trace_mse_loss(outputs, targets, mask).backward()
     return {k: p.grad.clone() for k, p in model.named_parameters() if p.grad is not None}
 
 

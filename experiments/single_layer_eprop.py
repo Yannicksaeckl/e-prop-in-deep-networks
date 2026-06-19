@@ -23,7 +23,7 @@ import matplotlib.pyplot as plt
 from tasks.store_and_recall import generate_batch, task_accuracy
 from models.vanilla_rnn import VanillaRNN
 from learning_rules.eprop import compute_eprop_gradients, mse_error, xent_error
-from learning_rules.bptt import compute_bptt_gradients
+from learning_rules.bptt import compute_bptt_gradients, _trace_mse_loss
 
 
 # ── Hyperparameters ──────────────────────────────────────────────────────────
@@ -75,7 +75,7 @@ def train(label: str, use_bptt: bool = False, d_zero: bool = False, lr: float = 
         )
 
         if use_bptt:
-            grads = compute_bptt_gradients(model, inputs, targets, mask)
+            grads = compute_bptt_gradients(model, inputs, targets, mask, _trace_mse_loss)
         else:
             grads = compute_eprop_gradients(
                 model, inputs, targets, mask,
@@ -115,7 +115,7 @@ def cosine_vs_delay(delays, n_trials=50):
             inputs, targets, mask_ = generate_batch(
                 BATCH_SIZE, N_PATTERNS, delay, CUE_DUR, OUT_DUR, DEVICE
             )
-            g_bptt  = compute_bptt_gradients(model, inputs, targets, mask_)
+            g_bptt  = compute_bptt_gradients(model, inputs, targets, mask_, _trace_mse_loss)
             g_eprop = compute_eprop_gradients(model, inputs, targets, mask_, mse_error, d_zero=False)
             g_d0    = compute_eprop_gradients(model, inputs, targets, mask_, mse_error, d_zero=True)
 
@@ -182,7 +182,7 @@ if __name__ == "__main__":
             for _ in range(500):
                 inp, tgt, msk = generate_batch(BATCH_SIZE, N_PATTERNS, dl, CUE_DUR, OUT_DUR, DEVICE)
                 if bptt_flag:
-                    g = compute_bptt_gradients(model, inp, tgt, msk)
+                    g = compute_bptt_gradients(model, inp, tgt, msk, _trace_mse_loss)
                 else:
                     g = compute_eprop_gradients(model, inp, tgt, msk, mse_error, d_zero=dz)
                 apply_grads(model, g, LR_EPROP)

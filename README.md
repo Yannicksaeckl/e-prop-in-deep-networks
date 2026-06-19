@@ -1,33 +1,63 @@
-# Deep E-prop: Testing Online Credit Assignment in Deep Recurrent Networks
+# Deep E-prop In Deep Recurrent Networks
 
-**NeuroAI & ML 4 Neuro — Sommersemester 2026**
+This repository is now aligned to `project_plan.md`, the supervisor-updated
+plan for a narrow test of Millidge's deep e-prop recursion in stacked vanilla
+tanh RNNs.
 
-Group: Simon Peter, Yannick Säckl, Ruchit Kumar Patel
+The current core question is not whether depth improves accuracy. Depth is a
+credit-assignment stressor: at the same network depth, does deep e-prop reach
+BPTT-like performance, and does its gradient stay aligned with BPTT, especially
+in the bottom recurrent layer?
 
-## Project Overview
+## Current Scope
 
-This project tests whether e-prop's eligibility-trace approximation actually matters when extended to deep networks (Millidge 2025), or whether the simpler d=0 (immediate derivative) baseline suffices.
+In scope:
+
+- stacked vanilla tanh RNNs, depth 1-2, with depth 3 optional later
+- store-and-recall first, then cue accumulation
+- BPTT, deep-RTRL as a numerical gate, deep e-prop, and d=0
+- delay as the primary swept variable
+- final performance plus layer/step-resolved gradient cosine diagnostics
+
+Out of scope for the core result:
+
+- spiking, LIF, ALIF, and SHD experiments
+- leaky-RNN alpha sweeps
+- sMNIST/psMNIST long-sequence experiments
+- feedforward insertion architectures
+- spectral-radius sweeps
+- depth-as-capacity claims
+
+See `PLAN_ALIGNMENT.md` for a concrete done/not-done checklist and redundant
+file inventory.
 
 ## Repository Structure
 
+```text
+tasks/           benchmark tasks: store-and-recall, cue accumulation
+models/          core DeepRNN/VanillaRNN plus legacy out-of-scope models
+learning_rules/  BPTT, single-layer e-prop, deep e-prop/d=0, deep-RTRL
+experiments/     scripts for the sequential experiment path
+tests/           fast sanity checks for task shapes and numerical gates
+results/         generated figures/metrics, including legacy out-of-scope runs
+figures/         generated diagrams
 ```
-tasks/           # Benchmark tasks (store-and-recall, evidence accumulation)
-models/          # RNN model definitions
-learning_rules/  # E-prop, deep e-prop, d=0, BPTT, deep-RTRL
-experiments/     # Experiment scripts
-results/         # Output figures and metrics
+
+## Sequential Milestones
+
+| Gate | Status | Current repo state |
+|---|---:|---|
+| G0: stacked tanh-RNN + BPTT training | Partial | forward pass and BPTT gradients exist; full solve-at-depth-1-and-2 run still needs a clean gated script/result |
+| G1: single-layer e-prop | Partial | implementation and depth-1 equivalence check exist; training reproduction needs a current rerun |
+| G2: deep-RTRL numerical gate | Implemented | `tests/sanity_checks.py` checks absolute/relative agreement with matching BPTT loss normalization |
+| G3: depth-2 deep e-prop core result | Partial | deep e-prop and d=0 implementation exists; store-and-recall learning/cosine result needs a fresh plan-aligned run |
+| G4: cue accumulation + delay sweep | Not yet | task exists; plan-aligned BPTT/deep-eprop/d=0 sweep with seeds/error bars is still future work |
+
+## Quick Check
+
+```bash
+python tests/sanity_checks.py
 ```
 
-## Key References
-
-- Bellec et al. (2020) — E-prop: Biologically plausible learning in RNNs
-- Millidge (2025) — Deep E-prop
-- Shalev-Merin (2026) — d=0 baseline / RTRL equivalences
-- Zucchet et al. — Instantaneous spatial backprop
-
-## Tasks
-
-1. [x] Single-layer e-prop on store-and-recall (reproduce standard result)
-2. [ ] Deep-RTRL correctness check (match BPTT to numerical precision)
-3. [ ] Deep e-prop vs d=0 vs BPTT at 2 layers — gradient cosine plots
-4. [ ] Depth sweep (1–3 layers), delay-length sweep
+The sanity suite is a plumbing check. Passing it does not mean the training
+milestones have been fully accepted.

@@ -57,6 +57,19 @@ def _mse_loss(outputs: Tensor, targets: Tensor, mask: Tensor) -> Tensor:
     return (sq * mask).sum() / (mask.sum() * outputs.shape[-1])
 
 
+def _trace_mse_loss(outputs: Tensor, targets: Tensor, mask: Tensor) -> Tensor:
+    """MSE normalization matching the online trace-rule gradient convention.
+
+    The trace implementations accumulate ``err = output - target`` at masked
+    timesteps and divide each timestep's batch contribution by ``B``. This is
+    the scalar autograd loss with the same derivative, used for numerical gates
+    such as deep-RTRL == BPTT.
+    """
+    sq = ((outputs - targets) ** 2).sum(-1)  # (T, B)
+    batch_size = outputs.shape[1]
+    return 0.5 * (sq * mask).sum() / batch_size
+
+
 def _xent_loss(outputs: Tensor, targets: Tensor, mask: Tensor) -> Tensor:
     # outputs, targets: (T, B, n_out); mask: (T, B)
     log_p = torch.log_softmax(outputs, dim=-1)   # (T, B, n_out)
