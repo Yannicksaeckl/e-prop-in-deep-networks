@@ -48,6 +48,25 @@ prototype files or result figures exist.
   layer.
 - Depth 3 is optional and should wait until G0-G4 at depth 2 are in good shape.
 
+## G5 — Enriched Evidence Accumulation (depth-loading experiment)
+
+Milestone added for the enriched cue accumulation experiment. Acceptance criteria:
+
+| Gate | Criterion | Status |
+|---|---|---|
+| G5-depth | BPTT depth=2 decision accuracy > depth=1 by ≥ threshold, stable across ≥3 seeds | Pending (auto-escalating k) |
+| G5-rtrl | deep-RTRL == BPTT to ≤ 1e-5 on enriched task | Pending |
+| G5-train | All four rules trained at fixed delay; no_eps_z fails while deep-eprop learns | Pending |
+| G5-cosine | Layer-resolved cosine vs D: deep-eprop bottom ≠ no_eps_z (separation visible) | Pending |
+| G5-decomp | RTRL-minus-eps_z frac_epsz and cos_epsz vs D reported at bottom layer | Pending |
+
+New files:
+- `tasks/enriched_evidence_accumulation.py` — parity-tree cue task (degree-2 boolean labels)
+- `notebooks/enriched_eprop_colab.ipynb` — full experiment notebook
+
+Note on `no_eps_z`: zeroes `eps_cross_*` in `deep_eprop.py` (all lower-layer gradients come
+from this term). Distinct from `d=0` (which drops temporal carry but keeps spatial eps_cross).
+
 ## Sequential Work Order
 
 1. Finish G0 on store-and-recall: BPTT training at depth 1 and 2.
