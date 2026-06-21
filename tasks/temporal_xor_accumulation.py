@@ -58,10 +58,11 @@ AUX_MASK_WEIGHT = 0.1
 
 
 def xor_label(x0: Tensor, x1: Tensor) -> Tensor:
-    """XOR of two binary features.
+    """XOR of sign(x0) and sign(x1).
 
-    x0, x1 : (...) tensors of binary features in {-1, +1}.
+    x0, x1 : (...) real-valued tensors.
     Returns long tensor ∈ {0=left, 1=right} — 1 when x0 and x1 have the same sign.
+    Works for both binary {-1,+1} and continuous Gaussian inputs.
     """
     return ((x0 * x1) > 0).long()
 
@@ -100,18 +101,21 @@ def generate_batch(
     targets = torch.zeros(T, B, N_OUT)
     mask    = torch.zeros(T, B)
 
-    # Binary features for each trial × cue, ∈ {-1, +1}
-    x0 = torch.randint(0, 2, (B, n_cues), generator=gen).float() * 2.0 - 1.0
-    x1 = torch.randint(0, 2, (B, n_cues), generator=gen).float() * 2.0 - 1.0
+    # Continuous Gaussian features ~ N(0, 1) — label = sign(x0 * x1).
+    # Continuous inputs give smooth gradients near the boundary (x0*x1 ≈ 0),
+    # making the XOR computation much more reliably learnable than binary {-1,+1}.
+    x0 = torch.randn(B, n_cues, generator=gen)
+    x1 = torch.randn(B, n_cues, generator=gen)
 
     cue_labels = xor_label(x0, x1)   # (B, n_cues) ∈ {0, 1}
 
-    # x0 at step 0, x1 at step 1 of each cue window
+    # x0 at step 0, x1 at step 1 of each cue window (no separate noise needed:
+    # Gaussian features already have continuous magnitude variation)
     for c in range(n_cues):
         t0 = c * stride
         t1 = c * stride + 1
-        inputs[t0, :, 0] = x0[:, c] + torch.randn(B, generator=gen) * noise_level
-        inputs[t1, :, 1] = x1[:, c] + torch.randn(B, generator=gen) * noise_level
+        inputs[t0, :, 0] = x0[:, c]
+        inputs[t1, :, 1] = x1[:, c]
 
     inputs[t_recall, :, 2] = 1.0                                          # recall
     inputs[:, :, 3] = torch.randn(T, B, generator=gen) * noise_level      # noise
