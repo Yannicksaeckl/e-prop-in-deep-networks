@@ -1,0 +1,22 @@
+{
+  "screen_log": [
+    {
+      "k": 4,
+      "acc_d1": 0.45703125,
+      "acc_d2": 0.51953125,
+      "gap": 0.0625
+    }
+  ],
+  "accepted_k": 4,
+  "passed": true,
+  "final_task_kw": {
+    "n_cues": 7,
+    "d_cue": 8,
+    "k": 4,
+    "w": 1,
+    "gap": 3,
+    "noise_level": 0.1,
+    "weights_seed": 42,
+    "delay": 10
+  }
+}

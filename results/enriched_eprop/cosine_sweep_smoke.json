@@ -1,0 +1,290 @@
+[
+  {
+    "delay": 1,
+    "trial": 0,
+    "group": "bottom",
+    "cos_eprop": 0.6442539095878601,
+    "cos_d0": 0.6708176732063293,
+    "cos_nepsz": NaN
+  },
+  {
+    "delay": 1,
+    "trial": 0,
+    "group": "top",
+    "cos_eprop": 0.8241751194000244,
+    "cos_d0": 0.820699155330658,
+    "cos_nepsz": 0.8241751194000244
+  },
+  {
+    "delay": 1,
+    "trial": 0,
+    "group": "hidden_all",
+    "cos_eprop": 0.7202829122543335,
+    "cos_d0": 0.728408932685852,
+    "cos_nepsz": 0.5416000485420227
+  },
+  {
+    "delay": 1,
+    "trial": 1,
+    "group": "bottom",
+    "cos_eprop": 0.7566313743591309,
+    "cos_d0": 0.7391633987426758,
+    "cos_nepsz": NaN
+  },
+  {
+    "delay": 1,
+    "trial": 1,
+    "group": "top",
+    "cos_eprop": 0.7750890851020813,
+    "cos_d0": 0.7406060695648193,
+    "cos_nepsz": 0.7750890851020813
+  },
+  {
+    "delay": 1,
+    "trial": 1,
+    "group": "hidden_all",
+    "cos_eprop": 0.7603350877761841,
+    "cos_d0": 0.7333809733390808,
+    "cos_nepsz": 0.4764655530452728
+  },
+  {
+    "delay": 1,
+    "trial": 2,
+    "group": "bottom",
+    "cos_eprop": 0.7698047757148743,
+    "cos_d0": 0.7849298715591431,
+    "cos_nepsz": NaN
+  },
+  {
+    "delay": 1,
+    "trial": 2,
+    "group": "top",
+    "cos_eprop": 0.8677956461906433,
+    "cos_d0": 0.9406108260154724,
+    "cos_nepsz": 0.8677956461906433
+  },
+  {
+    "delay": 1,
+    "trial": 2,
+    "group": "hidden_all",
+    "cos_eprop": 0.8050771951675415,
+    "cos_d0": 0.8492472767829895,
+    "cos_nepsz": 0.5791484713554382
+  },
+  {
+    "delay": 1,
+    "trial": 3,
+    "group": "bottom",
+    "cos_eprop": 0.7682339549064636,
+    "cos_d0": 0.7919708490371704,
+    "cos_nepsz": NaN
+  },
+  {
+    "delay": 1,
+    "trial": 3,
+    "group": "top",
+    "cos_eprop": 0.8231515288352966,
+    "cos_d0": 0.8220747113227844,
+    "cos_nepsz": 0.8231515288352966
+  },
+  {
+    "delay": 1,
+    "trial": 3,
+    "group": "hidden_all",
+    "cos_eprop": 0.8012706637382507,
+    "cos_d0": 0.8097637891769409,
+    "cos_nepsz": 0.6380351781845093
+  },
+  {
+    "delay": 5,
+    "trial": 0,
+    "group": "bottom",
+    "cos_eprop": 0.4447826147079468,
+    "cos_d0": 0.5032471418380737,
+    "cos_nepsz": NaN
+  },
+  {
+    "delay": 5,
+    "trial": 0,
+    "group": "top",
+    "cos_eprop": 0.5660521388053894,
+    "cos_d0": 0.5649498105049133,
+    "cos_nepsz": 0.5660521388053894
+  },
+  {
+    "delay": 5,
+    "trial": 0,
+    "group": "hidden_all",
+    "cos_eprop": 0.5232412815093994,
+    "cos_d0": 0.5433481931686401,
+    "cos_nepsz": 0.46000799536705017
+  },
+  {
+    "delay": 5,
+    "trial": 1,
+    "group": "bottom",
+    "cos_eprop": 0.5788586735725403,
+    "cos_d0": 0.5841013193130493,
+    "cos_nepsz": NaN
+  },
+  {
+    "delay": 5,
+    "trial": 1,
+    "group": "top",
+    "cos_eprop": 0.820311963558197,
+    "cos_d0": 0.7685002684593201,
+    "cos_nepsz": 0.820311963558197
+  },
+  {
+    "delay": 5,
+    "trial": 1,
+    "group": "hidden_all",
+    "cos_eprop": 0.6998199820518494,
+    "cos_d0": 0.6753739714622498,
+    "cos_nepsz": 0.5592378973960876
+  },
+  {
+    "delay": 5,
+    "trial": 2,
+    "group": "bottom",
+    "cos_eprop": 0.7434385418891907,
+    "cos_d0": 0.697313129901886,
+    "cos_nepsz": NaN
+  },
+  {
+    "delay": 5,
+    "trial": 2,
+    "group": "top",
+    "cos_eprop": 0.9108108282089233,
+    "cos_d0": 0.9000281095504761,
+    "cos_nepsz": 0.9108108282089233
+  },
+  {
+    "delay": 5,
+    "trial": 2,
+    "group": "hidden_all",
+    "cos_eprop": 0.8499876260757446,
+    "cos_d0": 0.8323275446891785,
+    "cos_nepsz": 0.7558944225311279
+  },
+  {
+    "delay": 5,
+    "trial": 3,
+    "group": "bottom",
+    "cos_eprop": 0.6884153485298157,
+    "cos_d0": 0.7001568078994751,
+    "cos_nepsz": NaN
+  },
+  {
+    "delay": 5,
+    "trial": 3,
+    "group": "top",
+    "cos_eprop": 0.844927191734314,
+    "cos_d0": 0.8355593085289001,
+    "cos_nepsz": 0.844927191734314
+  },
+  {
+    "delay": 5,
+    "trial": 3,
+    "group": "hidden_all",
+    "cos_eprop": 0.7683951258659363,
+    "cos_d0": 0.765728235244751,
+    "cos_nepsz": 0.5891594886779785
+  },
+  {
+    "delay": 10,
+    "trial": 0,
+    "group": "bottom",
+    "cos_eprop": 0.46376144886016846,
+    "cos_d0": 0.45342230796813965,
+    "cos_nepsz": NaN
+  },
+  {
+    "delay": 10,
+    "trial": 0,
+    "group": "top",
+    "cos_eprop": 0.7149721384048462,
+    "cos_d0": 0.7706117033958435,
+    "cos_nepsz": 0.7149721384048462
+  },
+  {
+    "delay": 10,
+    "trial": 0,
+    "group": "hidden_all",
+    "cos_eprop": 0.5811721086502075,
+    "cos_d0": 0.6036291718482971,
+    "cos_nepsz": 0.46539196372032166
+  },
+  {
+    "delay": 10,
+    "trial": 1,
+    "group": "bottom",
+    "cos_eprop": 0.8906828761100769,
+    "cos_d0": 0.88355952501297,
+    "cos_nepsz": NaN
+  },
+  {
+    "delay": 10,
+    "trial": 1,
+    "group": "top",
+    "cos_eprop": 0.7212573289871216,
+    "cos_d0": 0.7315214276313782,
+    "cos_nepsz": 0.7212573289871216
+  },
+  {
+    "delay": 10,
+    "trial": 1,
+    "group": "hidden_all",
+    "cos_eprop": 0.8189340829849243,
+    "cos_d0": 0.8201491236686707,
+    "cos_nepsz": 0.47627800703048706
+  },
+  {
+    "delay": 10,
+    "trial": 2,
+    "group": "bottom",
+    "cos_eprop": 0.7169850468635559,
+    "cos_d0": 0.6824977993965149,
+    "cos_nepsz": NaN
+  },
+  {
+    "delay": 10,
+    "trial": 2,
+    "group": "top",
+    "cos_eprop": 0.6665197610855103,
+    "cos_d0": 0.7025147080421448,
+    "cos_nepsz": 0.6665197610855103
+  },
+  {
+    "delay": 10,
+    "trial": 2,
+    "group": "hidden_all",
+    "cos_eprop": 0.6923500895500183,
+    "cos_d0": 0.6899399161338806,
+    "cos_nepsz": 0.43712252378463745
+  },
+  {
+    "delay": 10,
+    "trial": 3,
+    "group": "bottom",
+    "cos_eprop": 0.6507856249809265,
+    "cos_d0": 0.6077700257301331,
+    "cos_nepsz": NaN
+  },
+  {
+    "delay": 10,
+    "trial": 3,
+    "group": "top",
+    "cos_eprop": 0.8593513369560242,
+    "cos_d0": 0.8585284948348999,
+    "cos_nepsz": 0.8593513369560242
+  },
+  {
+    "delay": 10,
+    "trial": 3,
+    "group": "hidden_all",
+    "cos_eprop": 0.7862386703491211,
+    "cos_d0": 0.7727482318878174,
+    "cos_nepsz": 0.6763541102409363
+  }
+]
